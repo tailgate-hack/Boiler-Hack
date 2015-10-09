@@ -10,8 +10,6 @@
   require "open-uri"
   require "json"
 
-
-
   def earth_grab
 
     uri = URI.parse("https://query.odatahq.com/v3/odatahq/bbetailgatehack/earthquakes/?$format=json")
@@ -22,6 +20,7 @@
 
 
     data['value'].each do |item|
+
 
 
       Earthquake.create!(time: item["time"],
