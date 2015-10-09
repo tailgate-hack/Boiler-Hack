@@ -8,14 +8,6 @@
 
   require "json"
 
-
-    # Takes an endpoint and spits out Hash with symbols all the way through
-  def parsed(end_point)
-    response = hparty(end_point)
-    parsed = parse_me(response)
-  end
-
-  # Makes API call to IGA website for JSON data
   def hparty(end_point)
 
     HTTParty.get(end_point,
@@ -27,36 +19,32 @@
   # Turns JSON response into array of hashes all the way through
   def parse_me(json_obj)
 
-    begin
+    # begin
      puts json_obj.inspect
-     JSON.parse(json_obj)
-    rescue JSON::ParserError, TypeError => e
-     []
-    end
+     JSON.parse(json_obj.body)
+    # rescue JSON::ParserError, TypeError => e
+    #  []
+    # end
 
   end
 
-  # This group gets the URL for the picture of the Legislator
+  def parsed(end_point)
+    response = hparty(end_point)
+    parsed = parse_me(response)
+  end
 
-  # Conditions link for dynamic URL creation
-
-
-  # Creates URL for database store
-
-
-  # This will create the Legislators and place them in the database
   def earth_grab
+
+    binding.pry
 
     # Grabs JSON from API, using only endpoint, parses in to array of hashes
     earth_hash = parsed("https://query.odatahq.com/v3/odatahq/bbetailgatehack/earthquakes/?$format=json")
 
-
+    puts earth_hash
     # Assigns each house member to a spot in the database
-    earth_hash["value"].each do |item|
+    earth_hash['value'].each do |item|
 
-      # All API Calls for detail
-
-      # Creates Legislators from API stream
+      # Creates Earthquakes from API stream
 
       Earthquake.create!(time: item["time"],
                         latitude: item["latitude"],
