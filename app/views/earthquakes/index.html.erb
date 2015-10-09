@@ -17,13 +17,6 @@
     <!-- Custom CSS -->
     <link href="css/business-frontpage.css" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 
 <body>
@@ -66,7 +59,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="tagline">Earthquake info at your fingertips</h1>
+                    <h1 class="tagline">Earthquake info at your fingertips.</h1>
                 </div>
             </div>
         </div>
@@ -80,7 +73,12 @@
         <div class="row">
             <div class="col-sm-8">
                 <h2>What We Do</h2>
-                <p>Some 80 percent of all the planet's earthquakes occur along the rim of the Pacific Ocean, called the "Ring of Fire" because of the preponderance of volcanic activity there as well. Most earthquakes occur at fault zones, where tectonic plates—giant rock slabs that make up the Earth's upper layer—collide or slide against each other. These impacts are usually gradual and unnoticeable on the surface; however, immense stress can build up between plates. When this stress is released quickly, it sends massive vibrations, called seismic waves, often hundreds of miles through the rock and up to the surface. Other quakes can occur far from faults zones when plates are stretched or squeezed.</p>
+                <p>Some 80 percent of all the planet's earthquakes occur along the rim of the Pacific Ocean,
+                  called the "Ring of Fire" because of the preponderance of volcanic activity there as well.
+                  Most earthquakes occur at fault zones, where tectonic plates—giant rock slabs that make up the Earth's upper layer—collide or slide against each other.
+                  These impacts are usually gradual and unnoticeable on the surface; however, immense stress can build up between plates.
+                  When this stress is released quickly, it sends massive vibrations, called seismic waves, often hundreds of miles through the rock and up to the surface.
+                  Other quakes can occur far from faults zones when plates are stretched or squeezed.</p>
                 </p>
             </div>
             <div class="col-sm-4">
@@ -101,41 +99,16 @@
         <!-- /.row -->
 
         <hr>
-        <div class="row">
-            <div class="col-sm-4">
-                <%= link_to image_tag('quake2.jpg', class: "img-circle img-responsive img-center") %>
-                <h2>Marketing Box #1</h2>
-                <p>These marketing boxes are a great place to put some information. These can contain summaries of what the company does, promotional information, or anything else that is relevant to the company. These will usually be below-the-fold.</p>
-            </div>
-            <div class="col-sm-4">
-              <%= link_to image_tag('quake3.jpg', class: "img-circle img-responsive img-center") %>
-                <h2>Marketing Box #2</h2>
-                <p>The images are set to be circular and responsive. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-            </div>
-            <div class="col-sm-4">
-              <%= link_to image_tag('quake4.jpg', class: "img-circle img-responsive img-center") %>
-                <h2>Marketing Box #3</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-            </div>
-        </div>
-        <!-- /.row -->
+        <div id="visualization"></div>
 
         <div class="row">
+          <% @earthquakes.sample(3).each do |quake| %>
             <div class="col-sm-4">
-                <%= link_to image_tag('quake2.jpg', class: "img-circle img-responsive img-center") %>
-                <h2>Marketing Box #1</h2>
-                <p>These marketing boxes are a great place to put some information. These can contain summaries of what the company does, promotional information, or anything else that is relevant to the company. These will usually be below-the-fold.</p>
+                <%= link_to image_tag( quake_images, class: "img-circle img-responsive img-center") %>
+                <h2 style="font-size:22px"><%= quake["place"] %></h2>
+                <p><b>Depth:</b> <%= quake["depth"] %>, <b>Mag: </b><%= quake["mag"] %>, <b>Magtype:</b> <%= quake["magType"] %>, <b>Gap:</b> <%= quake["gap"] %>, <b>Dmin:</b> <%= quake["dmin"] %>, <b>Rms:</b> <%= quake["rms"] %></p>
             </div>
-            <div class="col-sm-4">
-              <%= link_to image_tag('quake3.jpg', class: "img-circle img-responsive img-center") %>
-                <h2>Marketing Box #2</h2>
-                <p>The images are set to be circular and responsive. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-            </div>
-            <div class="col-sm-4">
-              <%= link_to image_tag('quake4.jpg', class: "img-circle img-responsive img-center") %>
-                <h2>Marketing Box #3</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-            </div>
+            <% end %>
         </div>
         <!-- /.row -->
 
